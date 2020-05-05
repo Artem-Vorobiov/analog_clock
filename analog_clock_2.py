@@ -61,22 +61,22 @@ class Quaters(turtle.Turtle):
 
 
 class Arrow(turtle.Turtle):
-	def __init__(self):
+	def __init__(self, arr_len, pen_size):
 		turtle.Turtle.__init__(self)
 		self.penup()
 		self.setposition(0,0)
 		self.pendown()
-		self.pen(fillcolor="black", pencolor="red", pensize=10)
+		self.pen(fillcolor="black", pencolor="red", pensize=pen_size)
 		self.setheading(90)
-		self.fd(160)
+		self.fd(arr_len)
 
-	def updating(self, c):
+	def updating(self, c, arr_len):
 		self.clear()
 		self.penup()
 		self.setposition(0,0)
 		self.pendown()
 		self.setheading(c)
-		self.fd(160)
+		self.fd(arr_len)
 
 
 
@@ -103,21 +103,13 @@ sq_12  = Quaters('square', 'black', 155.8, -90)
 
 arrow  = Quaters('square', 'black', 0, 80)
 
-arrow.resize(5,0.2)
-print(arrow.heading())
 
 
 
 #######################################################
-# turtle.penup()
-# turtle.setposition(0,0)
-# turtle.pendown()
-# turtle.pen(fillcolor="black", pencolor="red", pensize=10)
-
-# turtle.setheading(90)
-# turtle.fd(190)
-arr_1 = Arrow()
-c = 90 - 6
+arr_sec = Arrow(150,3)
+arr_min = Arrow(170,6)
+arr_hrs = Arrow(100,12)
 #######################################################
 
 
@@ -130,29 +122,17 @@ while True:
 	turtle.update()
 	time.sleep(1)
 
-	i = arrow.heading()
-	arrow.setheading(i-6)
-
 #######################################################
-	arr_1.updating(c)
-	c = c -6
+	b = time.ctime().split()
+	d = b[3].split(':')
+	sec   = 90 - 6* int(d[2])
+	mins  = 90 - 6* int(d[1])
+	hours = 90 - 6* int(d[0])
+
+	arr_sec.updating(sec, 150)
+	arr_min.updating(mins, 170)
+	arr_hrs.updating(hours, 100)
 #######################################################
 
 
-
-
-
-
-
-
-
-# Junk:
-
-		# Shape 
-# # (y,x) and when Y plus is a minus
-# s = turtle.Shape("compound")
-# poly1 = ((0,200),(0, 0))
-# s.addcomponent(poly1, "lightgreen", "blue")
-# turtle.register_shape("myshape", s)
-# turtle.shape("myshape")
 
